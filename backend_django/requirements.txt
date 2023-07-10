@@ -5,8 +5,4 @@ djangorestframework-simplejwt==5.2.2
 PyJWT==2.7.0
 pytz==2023.3
 sqlparse==0.4.4
-<<<<<<< HEAD
 typing_extensions==4.7.1
-=======
-typing_extensions==4.7.1
->>>>>>> 4ac639f1c4db70ca64f0c628d12e42bc46c9737b

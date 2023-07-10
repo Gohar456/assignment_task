@@ -9,12 +9,13 @@ import { RegisterForm } from "../../styles/Auth"
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    mobile: "",
+    first_name: "",
+    last_name: "",
     address: "",
+    user_type: "",
     password: "",
-    role: "",
+    confirm_password: "",
   })
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
@@ -30,9 +31,10 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log(formData)
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/auth/register",
+        "http://127.0.0.1:8000/auth/register/",
         formData
       )
       setMessage(data.message)
@@ -71,12 +73,27 @@ const SignupForm = () => {
                 className="form-control"
                 id="name"
                 placeholder="name@example.com"
-                name="name"
+                name="first_name"
                 onChange={handleOnChange}
               />
               <label htmlFor="name">Full Name</label>
             </div>
           </div>
+          <div className="col-sm-6">
+            <div className="form-floating mb-3">
+              <input
+                type="text"
+                className="form-control"
+                id="last_name"
+                placeholder="name@example.com"
+                name="last_name"
+                onChange={handleOnChange}
+              />
+              <label htmlFor="last_name">Last Name</label>
+            </div>
+          </div>
+        </div>
+        <div className="row g-3">
           <div className="col-sm-6">
             <div className="form-floating mb-3">
               <input
@@ -88,21 +105,6 @@ const SignupForm = () => {
                 onChange={handleOnChange}
               />
               <label htmlFor="email">Email</label>
-            </div>
-          </div>
-        </div>
-        <div className="row g-3">
-          <div className="col-sm-6">
-            <div className="form-floating mb-3">
-              <input
-                type="phone"
-                className="form-control"
-                id="mobile"
-                placeholder="name@example.com"
-                name="mobile"
-                onChange={handleOnChange}
-              />
-              <label htmlFor="mobile">Mobile</label>
             </div>
           </div>
           <div className="col-sm-6">
@@ -125,7 +127,7 @@ const SignupForm = () => {
               <select
                 class="form-select"
                 id="floatingSelect"
-                name="role"
+                name="user_type"
                 onChange={handleOnChange}
                 aria-label="Floating label select example"
               >

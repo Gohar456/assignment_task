@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 import axios from "axios"
 
@@ -18,6 +18,7 @@ const SignupForm = () => {
   })
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
+  const fromRef = useRef()
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
@@ -45,6 +46,7 @@ const SignupForm = () => {
         console.error("An error occurred:", error)
       }
     }
+    fromRef.current.value = ""
   }
 
   return (
@@ -59,7 +61,7 @@ const SignupForm = () => {
         </Alert>
       ) : null}
 
-      <RegisterForm onSubmit={handleSubmit}>
+      <RegisterForm ref={fromRef} onSubmit={handleSubmit}>
         <h1 className="text-center mb-3 h1 fw-bold">Registration</h1>
         <div className="row g-3">
           <div className="col-sm-6">

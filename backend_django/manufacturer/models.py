@@ -21,3 +21,6 @@ class Manufacturer(models.Model):
     to_address = models.CharField(max_length=255)
     quantity = models.CharField(max_length=255, choices=QUANTITY_CHOICES)
     transporter = models.ForeignKey(Transporter, on_delete=models.CASCADE)
+    
+    def __str__(self) -> str:
+        return super().__str__()

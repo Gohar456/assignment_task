@@ -75,7 +75,7 @@ const SignupForm = () => {
                 name="first_name"
                 onChange={handleOnChange}
               />
-              <label htmlFor="name">First Name</label>
+              <label htmlhtmlFor="name">First Name</label>
             </div>
           </div>
           <div className="col-sm-6">
@@ -88,7 +88,7 @@ const SignupForm = () => {
                 name="last_name"
                 onChange={handleOnChange}
               />
-              <label htmlFor="last_name">Last Name</label>
+              <label htmlhtmlFor="last_name">Last Name</label>
             </div>
           </div>
         </div>
@@ -103,7 +103,7 @@ const SignupForm = () => {
                 name="email"
                 onChange={handleOnChange}
               />
-              <label htmlFor="email">Email</label>
+              <label htmlhtmlFor="email">Email</label>
             </div>
           </div>
           <div className="col-sm-6">
@@ -116,15 +116,15 @@ const SignupForm = () => {
                 name="password"
                 onChange={handleOnChange}
               />
-              <label htmlFor="password">Password</label>
+              <label htmlhtmlFor="password">Password</label>
             </div>
           </div>
         </div>
         <div className="row mb-3">
           <div className="col">
-            <div class="form-floating">
+            <div className="form-floating">
               <select
-                class="form-select"
+                className="form-select"
                 id="floatingSelect"
                 name="user_type"
                 onChange={handleOnChange}
@@ -135,7 +135,7 @@ const SignupForm = () => {
                 </option>
                 <option value="transporter">Transporter</option>
               </select>
-              <label for="floatingSelect">Register as</label>
+              <label htmlFor="floatingSelect">Register as</label>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@ const SignupForm = () => {
                 name="address"
                 onChange={handleOnChange}
               ></textarea>
-              <label htmlFor="address">Address</label>
+              <label htmlhtmlFor="address">Address</label>
             </div>
           </div>
         </div>

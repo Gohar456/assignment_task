@@ -20,23 +20,15 @@ class RegisterSerializier(serializers.ModelSerializer):
     """This Serialzier is for Signup/Register user on wbsite """
 
     password = serializers.CharField(write_only = True, required=True, validators=[validate_password])
-    confirm_password = serializers.CharField(write_only = True, required=True,)
-
 
     class Meta:
         model = User
         fields = [
             'email', 'first_name',
             'last_name', 'address', 'user_type',
-            'password', 'confirm_password',
+            'password'
                   ]
 
-    def validate(self, attrs):
-
-        if attrs['password'] != attrs['confirm_password']:
-            raise serializers.ValidationError({"password": ["Password fields didn't match."]})
-
-        return attrs
 
     def create(self, validated_data):
         user = User.objects.create(

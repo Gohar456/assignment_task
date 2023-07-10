@@ -71,7 +71,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
       })
       .status(200)
-      .json({ details: { ...others } })
+      .json({ details: { ...others }, access_key: token })
   } catch (err) {
     next(err)
   }

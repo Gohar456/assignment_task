@@ -1,19 +1,26 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 
 import axios from "axios"
 
 import { Button } from "react-bootstrap"
 import Alert from "react-bootstrap/Alert"
 
+import { AuthContext } from "../../context//AuthReducer"
+
 import { SigninForm } from "../../styles/Auth"
 
 const LoginForm = () => {
+  const { user, loading, error, dispatch } = useContext(AuthContext)
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     email: "",
-    user_password: "",
+    password: "",
   })
+
   const [message, setMessage] = useState("")
-  const [error, setError] = useState()
+  const [loginError, setloginError] = useState()
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
@@ -23,17 +30,29 @@ const LoginForm = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(formData)
+    dispatch({ type: "LOGIN_START" })
+    try {
+      const res = await axios.post(`http://localhost:5000/auth/login`, formData)
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+      navigate("/profile")
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data.message })
+      setloginError("Login Failed")
+    }
   }
 
   return (
     <>
       {message ? (
-        <Alert variant="success">{message}</Alert>
-      ) : error ? (
-        <Alert variant="danger">{}</Alert>
+        <Alert variant="success" dismissible>
+          {message}
+        </Alert>
+      ) : loginError ? (
+        <Alert variant="danger" dismissible>
+          {error}
+        </Alert>
       ) : null}
       <SigninForm onSubmit={handleSubmit}>
         <h1 className="text-center mb-3 h1 fw-bold">Login</h1>
@@ -44,6 +63,7 @@ const LoginForm = () => {
                 type="email"
                 class="form-control"
                 id="email"
+                name="email"
                 onChange={handleOnChange}
                 placeholder="name@example.com"
               />
@@ -54,6 +74,7 @@ const LoginForm = () => {
                 type="password"
                 class="form-control"
                 id="password"
+                name="password"
                 onChange={handleOnChange}
                 placeholder="Password"
               />

@@ -15,7 +15,6 @@ const SignupForm = () => {
     address: "",
     user_type: "",
     password: "",
-    confirm_password: "",
   })
   const [message, setMessage] = useState("")
   const [error, setError] = useState("")
@@ -76,7 +75,7 @@ const SignupForm = () => {
                 name="first_name"
                 onChange={handleOnChange}
               />
-              <label htmlFor="name">Full Name</label>
+              <label htmlFor="name">First Name</label>
             </div>
           </div>
           <div className="col-sm-6">

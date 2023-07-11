@@ -58,27 +58,27 @@ const LoginForm = () => {
         <h1 className="text-center mb-3 h1 fw-bold">Login</h1>
         <div className="row g-3 mb-3">
           <div className="col-">
-            <div class="form-floating mb-3">
+            <div className="form-floating mb-3">
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="email"
                 name="email"
                 onChange={handleOnChange}
                 placeholder="name@example.com"
               />
-              <label for="email">Email</label>
+              <label htmlFor="email">Email</label>
             </div>
-            <div class="form-floating">
+            <div className="form-floating">
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="password"
                 name="password"
                 onChange={handleOnChange}
                 placeholder="Password"
               />
-              <label for="password">Password</label>
+              <label htmlFor="password">Password</label>
             </div>
           </div>
         </div>

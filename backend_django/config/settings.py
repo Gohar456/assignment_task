@@ -31,7 +31,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     "http://localhost:3000",
 )
-CSRF_TRUSTED_ORIGINS = ["https://tags-ltd.com", "http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 # Application definition
 

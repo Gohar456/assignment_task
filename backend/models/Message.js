@@ -1,29 +1,24 @@
 import mongoose from "mongoose"
 
-const UserSchema = new mongoose.Schema(
+const MessageSchema = new mongoose.Schema(
   {
-    first_name: {
+    order_id: {
       type: String,
       required: true,
     },
-    last_name: {
+    price: {
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
+    transporter_name: {
       type: String,
       required: true,
     },
-    user_type: {
+    transporter_id: {
       type: String,
       required: true,
     },
-    address: {
+    manufacturer_id: {
       type: String,
       required: true,
     },
@@ -32,4 +27,4 @@ const UserSchema = new mongoose.Schema(
   { versionKey: false }
 )
 
-export default mongoose.model("user", UserSchema, "user")
+export default mongoose.model("message", MessageSchema, "message")

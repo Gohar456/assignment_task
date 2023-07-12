@@ -13,7 +13,7 @@ const SignupForm = () => {
     first_name: "",
     last_name: "",
     address: "",
-    user_type: "",
+    user_type: "manufacturer",
     password: "",
   })
   const [message, setMessage] = useState("")
@@ -33,7 +33,7 @@ const SignupForm = () => {
     console.log(formData)
     try {
       const { data } = await axios.post(
-        "http://127.0.0.1:8000/auth/register/",
+        "http://localhost:5000/auth/register",
         formData
       )
       setMessage(data.message)
@@ -130,9 +130,7 @@ const SignupForm = () => {
                 onChange={handleOnChange}
                 aria-label="Floating label select example"
               >
-                <option selected value="manufacturer">
-                  Manufacturer
-                </option>
+                <option value="manufacturer">Manufacturer</option>
                 <option value="transporter">Transporter</option>
               </select>
               <label for="floatingSelect">Register as</label>

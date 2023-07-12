@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 app.use(cors())
+app.options("*", cors())
 const port = 5000
 dotenv.config()
 

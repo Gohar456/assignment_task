@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer } from "react"
 
 const INITIAL_STATE = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: JSON.parse(sessionStorage.getItem("user")) || null,
   loading: false,
   error: null,
 }
@@ -34,6 +34,16 @@ const AuthReducer = (state, action) => {
         loading: false,
         error: null,
       }
+    case "REFRESH_TOKEN": {
+      return {
+        user: {
+          ...state.user,
+          access_key: action.payload,
+        },
+        loading: false,
+        error: null,
+      }
+    }
     default:
       return state
   }

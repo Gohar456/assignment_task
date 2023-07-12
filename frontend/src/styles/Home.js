@@ -6,7 +6,6 @@ export const HomeSection = styled.section`
   margin-top: -72px;
   background: url("./assets/cover-page.jpg") center center no-repeat;
   background-size: cover;
-
   &::after {
     content: "";
     position: absolute;

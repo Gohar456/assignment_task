@@ -9,13 +9,31 @@ import { BsPersonCircle } from "react-icons/bs"
 import { AuthContext } from "../../context/AuthReducer"
 
 import { css } from "@emotion/react"
+import axios from "axios"
 
 const Header = () => {
-  const { user } = useContext(AuthContext)
+  const { user, dispatch } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const location = useLocation()
-  const isHomePage = location.pathname === "/" && "/profile"
+  const isHomePage =
+    location.pathname === "/" ||
+    location.pathname === "/profile" ||
+    location.pathname === "/profile/messages"
+  const ispPofilePage =
+    location.pathname === "/profile" ||
+    location.pathname === "/profile/messages"
+
+  const handleLogout = async () => {
+    try {
+      const { data } = axios.post("http://localhost:5000/auth/logout")
+      sessionStorage.clear("user")
+      dispatch({ type: "LOGOUT" })
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -28,7 +46,10 @@ const Header = () => {
         `}
       >
         <div className="container">
-          <Link className="navbar-brand text-white fw-bold" to="/">
+          <Link
+            className="navbar-brand text-white fw-bold"
+            to={ispPofilePage ? null : "/"}
+          >
             Test Applictaion
           </Link>
           <button
@@ -46,7 +67,12 @@ const Header = () => {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               {!user ? null : (
                 <li className="nav-item me-3">
-                  <a
+                  <Link
+                    to={
+                      user.details.user_type === "Manufacturer"
+                        ? "/profile/messages"
+                        : "/profile"
+                    }
                     className="nav-link active position-relative"
                     aria-current="page"
                     href="#"
@@ -56,7 +82,7 @@ const Header = () => {
                       99+
                       <span className="visually-hidden">unread messages</span>
                     </span>
-                  </a>
+                  </Link>
                 </li>
               )}
             </ul>
@@ -93,6 +119,7 @@ const Header = () => {
               <Button
                 className="h-5 ms-2 px-4 py-1"
                 variant="light"
+                onClick={handleLogout}
                 css={css`
                   &:hover {
                     color: black !important ;

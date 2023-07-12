@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 
-export const ProfileSection = styled.section`
+export const MessageSection = styled.section`
   position: relative;
   width: 100%;
   background: url("./assets/transporter-page.jpeg") no-repeat;
@@ -23,17 +23,10 @@ export const ProfileSection = styled.section`
   }
 `
 
-export const ProfileContainer = styled.div`
+export const MessageContainer = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-`
-
-export const FormContainer = styled.div`
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 12px;
 `

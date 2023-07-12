@@ -1,18 +1,22 @@
+import { useContext } from "react"
+import { AuthContext } from "../../context/AuthReducer"
+
 import { ProfileSection, ProfileContainer } from "../../styles/Profile"
+import ManufacturerProfile from "../../components/ManufacturerProfile"
+import TransporterProfile from "../../components/TransporterProfile"
 
 const Profile = () => {
+  const { user } = useContext(AuthContext)
+  const { details } = user
   return (
     <>
       <ProfileSection>
         <ProfileContainer className="container">
-          <h1 className="text-white text-center fw-bold">
-            Quality Crafted, Innovation Unleashed <br /> Powering the Future!
-          </h1>
-          <div className="row g-3">
-            <div className="col-12 col-md-6">
-              <h1>Welcome</h1>
-            </div>
-          </div>
+          {details.user_type === "Manufacturer" ? (
+            <ManufacturerProfile />
+          ) : (
+            <TransporterProfile />
+          )}
         </ProfileContainer>
       </ProfileSection>
     </>

@@ -120,6 +120,12 @@ const globalStyles = css`
   h1 {
     font-size: 3rem;
   }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
 `
 
 const GlobalStyle = () => <Global styles={globalStyles} />

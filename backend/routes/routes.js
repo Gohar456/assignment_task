@@ -1,31 +1,36 @@
 import express from "express"
 
-import { login, register, viewUser } from "../controllers/user.js"
-import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js"
+import { login, register, refreshTokens, logout } from "../controllers/user.js"
+
+import {
+  hireTransporter,
+  listallTransportes,
+  listAllOrders,
+} from "../controllers/order.js"
+
+import { qoutePrice, lestAllReplies } from "../controllers/message.js"
+
+import { verifyToken } from "../utils/verifyToken.js"
 
 const router = express.Router()
 router.get("/checkauthentication", verifyToken, (req, res, next) => {
-  res.send("working token ")
+  res.send("working token")
 })
-//admin can access
-// router.post("/auth/addServices", verifyToken, verifyAdmin, AddServices)
+// Bookings
+router.get("/booking/listTransporter", verifyToken, listallTransportes)
+router.post("/booking/hireTransporter", verifyToken, hireTransporter)
 
-// //user or admin can access
-// router.post('/auth/addAppointMent',verifyToken, AddAppointMentCollection);
-// router.post('/auth/appointByDate', verifyToken, verifyUser, appointMentByDate);
-// router.post('/auth/addReview', verifyToken, AddReview);
-// router.put('/auth/updateInfo/:id', verifyToken,UpdateUserInfo);
-// router.get('/auth/patients', verifyToken, verifyUser,AppointmentPatientsList);
-// router.get('/auth/users',verifyToken, verifyAdmin,viewUser);
+//Orders
+router.get("/order/lisAllOrders/:id", verifyToken, listAllOrders)
 
-// //global
-// router.get('/auth/ourServices', ServicesList);
-// router.post('/auth/isDoctor',IsDoctor);
-// router.get('/auth/reviews', ReviewsList);
-// router.get('/auth/doctors', DoctorList);
+// Message
+router.post("/message/qoutePirce", verifyToken, qoutePrice)
+router.get("/message/listReplies/:id", verifyToken, lestAllReplies)
 
 //auth
 router.post("/auth/register", register)
 router.post("/auth/login", login)
+router.post("/auth/refresh_token", refreshTokens)
+router.post("/auth/logout", logout)
 
 export default router
